@@ -63,7 +63,9 @@
                 android:id="@+id/seekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:max="5"
+                android:progress="2" />
         </LinearLayout>
 
         <LinearLayout
@@ -78,6 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:checked="true"
                 android:paddingBottom="70dp"
                 android:text="Frosting" />
 
@@ -87,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:layout_weight="1"
+                android:checked="true"
                 android:text="Candles" />
 
         </LinearLayout>
@@ -111,6 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="40dp"
+                android:onClick="goodbye"
                 android:text="GOODBYE" />
 
         </LinearLayout>

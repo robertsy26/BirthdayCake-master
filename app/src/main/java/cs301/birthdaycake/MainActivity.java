@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,8 +18,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         CakeView cakeView = findViewById(R.id.cakeview);
         CakeController cakeController = new CakeController(cakeView);
+
         Button blowout = findViewById(R.id.button1);
         blowout.setOnClickListener(cakeController);
+
+        Switch candles = findViewById(R.id.switch2);
+        candles.setOnCheckedChangeListener(cakeController);
     }
     public void goodbye(View button){
         System.out.println("Goodbye");

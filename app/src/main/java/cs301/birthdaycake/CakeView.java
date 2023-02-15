@@ -37,7 +37,6 @@ public class CakeView extends SurfaceView {
     private CakeModel cakeModel;
 
 
-
     /**
      * ctor must be overridden here as per standard Java inheritance practice.  We need it
      * anyway to initialize the member variables
@@ -73,25 +72,23 @@ public class CakeView extends SurfaceView {
      * the position of the bottom left corner of the candle
      */
     public void drawCandle(Canvas canvas, float left, float bottom) {
-        if(cakeModel.hasCandles) {
-            canvas.drawRect(left, bottom - candleHeight, left + candleWidth, bottom, candlePaint);
+        canvas.drawRect(left, bottom - candleHeight, left + candleWidth, bottom, candlePaint);
 
-            if (cakeModel.lit) {
-                //draw the outer flame
-                float flameCenterX = left + candleWidth / 2;
-                float flameCenterY = bottom - wickHeight - candleHeight - outerFlameRadius / 3;
-                canvas.drawCircle(flameCenterX, flameCenterY, outerFlameRadius, outerFlamePaint);
+        if (cakeModel.lit) {
+            //draw the outer flame
+            float flameCenterX = left + candleWidth / 2;
+            float flameCenterY = bottom - wickHeight - candleHeight - outerFlameRadius / 3;
+            canvas.drawCircle(flameCenterX, flameCenterY, outerFlameRadius, outerFlamePaint);
 
-                //draw the inner flame
-                flameCenterY += outerFlameRadius / 3;
-                canvas.drawCircle(flameCenterX, flameCenterY, innerFlameRadius, innerFlamePaint);
-            }
-
-            //draw the wick
-            float wickLeft = left + candleWidth / 2 - wickWidth / 2;
-            float wickTop = bottom - wickHeight - candleHeight;
-            canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
+            //draw the inner flame
+            flameCenterY += outerFlameRadius / 3;
+            canvas.drawCircle(flameCenterX, flameCenterY, innerFlameRadius, innerFlamePaint);
         }
+
+        //draw the wick
+        float wickLeft = left + candleWidth / 2 - wickWidth / 2;
+        float wickTop = bottom - wickHeight - candleHeight;
+        canvas.drawRect(wickLeft, wickTop, wickLeft + wickWidth, wickTop + wickHeight, wickPaint);
 
     }
 
@@ -99,12 +96,11 @@ public class CakeView extends SurfaceView {
      * onDraw is like "paint" in a regular Java program.  While a Canvas is
      * conceptually similar to a Graphics in javax.swing, the implementation has
      * many subtle differences.  Show care and read the documentation.
-     *
+     * <p>
      * This method will draw a birthday cake
      */
     @Override
-    public void onDraw(Canvas canvas)
-    {
+    public void onDraw(Canvas canvas) {
         //top and bottom are used to keep a running tally as we progress down the cake layers
         float top = cakeTop;
         float bottom = cakeTop + frostHeight;
@@ -128,11 +124,16 @@ public class CakeView extends SurfaceView {
         canvas.drawRect(cakeLeft, top, cakeLeft + cakeWidth, bottom, cakePaint);
 
         //Now a candle in the center
-        drawCandle(canvas, cakeLeft + cakeWidth/2 - candleWidth/2, cakeTop);
+        if (cakeModel.hasCandles) {
+            float candleSpacing = cakeWidth / (cakeModel.candles + 1f);
+            for (int i = 0; i < cakeModel.candles; i++) {
+                drawCandle(canvas, cakeLeft + (candleSpacing * (i + 1)) - (candleWidth / 2), cakeTop);
+            }
+        }
 
     }//onDraw
 
-    public CakeModel getCakeModel(){
+    public CakeModel getCakeModel() {
         return cakeModel;
     }
 

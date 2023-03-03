@@ -28,7 +28,7 @@ public class CakeView extends SurfaceView {
     public static final float layerHeight = 200.0f;
     public static final float frostHeight = 50.0f;
     public static final float candleHeight = 300.0f;
-    public static final float candleWidth = 40.0f;
+    public static final float candleWidth = 80.0f;
     public static final float wickHeight = 30.0f;
     public static final float wickWidth = 6.0f;
     public static final float outerFlameRadius = 30.0f;
@@ -50,7 +50,7 @@ public class CakeView extends SurfaceView {
         setWillNotDraw(false);
 
         //Setup our palette
-        cakePaint.setColor(0xFFC755B5);  //violet-red
+        cakePaint.setColor(0xFF00FF00);  //green
         cakePaint.setStyle(Paint.Style.FILL);
         frostingPaint.setColor(0xFFFFFACD);  //pale yellow
         frostingPaint.setStyle(Paint.Style.FILL);
